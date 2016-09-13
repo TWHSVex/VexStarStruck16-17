@@ -75,6 +75,7 @@ task autonomous()
 
 task usercontrol()
 {
+	tankControl(Ch4,Ch1);
   // User control code here, inside the loop
 
   while (true)
