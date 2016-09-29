@@ -1,8 +1,8 @@
 #pragma config(Motor,  port2,           frontRight,    tmotorVex393_MC29, openLoop, reversed)
 #pragma config(Motor,  port3,           frontLeft,     tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port4,           backRight,     tmotorVex393_MC29, openLoop, reversed)
-#pragma config(Motor,  port5,           backLeft,      tmotorVex393_MC29, openLoop)
-#pragma config(Motor,  port6,           g1,            tmotorVex393_MC29, openLoop, reversed)
+#pragma config(Motor,  port5,            ,             tmotorVex393_MC29, openLoop)
+#pragma config(Motor,  port6,           backLeft,      tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port7,           g2,            tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port8,           g3,            tmotorVex393_MC29, openLoop, reversed)
 #pragma config(Motor,  port9,           g4,            tmotorVex393_MC29, openLoop)
@@ -57,10 +57,10 @@ task autonomous()
 }
 void launch()
 {
-	motor[g1]=128;
-	motor[g2]=128;
-	motor[g3]=128;
-	motor[g4]=128;
+	//motor[g1]=128;
+	//motor[g2]=128;
+//	motor[g3]=128;
+//	motor[g4]=128;
 }
 
 void rotateR(){
