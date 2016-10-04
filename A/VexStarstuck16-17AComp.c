@@ -16,7 +16,7 @@
 #pragma competitionControl(Competition)
 #pragma autonomousDuration(20)
 #pragma userControlDuration(120)
-al
+
 #include "Vex_Competition_Includes.c"   //Main competition background code...do not modify!
 
 /////////////////////////////////////////////////////////////////////////////////////////
