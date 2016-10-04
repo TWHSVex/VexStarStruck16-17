@@ -6,13 +6,13 @@
 
  #pragma platform(VEX)
 #define C1LX vexRT[Ch4]
-#define C1LY vexRT[Ch3]
+#define C1LY vexRT[Ch3]fv
 #define C1RX vexRT[Ch1]
 //Competition Control and Duration Settings
 #pragma competitionControl(Competition)
 #pragma autonomousDuration(20)
 #pragma userControlDuration(120)
-
+al
 #include "Vex_Competition_Includes.c"   //Main competition background code...do not modify!
 
 /////////////////////////////////////////////////////////////////////////////////////////
