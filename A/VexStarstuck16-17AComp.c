@@ -1,8 +1,7 @@
-#pragma config(Motor,  port2,           frontRight,    tmotorVex393_MC29, openLoop, reversed)
-#pragma config(Motor,  port3,           frontLeft,     tmotorVex393_MC29, openLoop)
-#pragma config(Motor,  port4,           backRight,     tmotorVex393_MC29, openLoop, reversed)
-#pragma config(Motor,  port5,            ,             tmotorVex393_MC29, openLoop)
-#pragma config(Motor,  port6,           backLeft,      tmotorVex393_MC29, openLoop)
+#pragma config(Motor,  port2,           backRight,     tmotorVex393_MC29, openLoop, reversed)
+#pragma config(Motor,  port3,           frontRight,    tmotorVex393_MC29, openLoop, reversed)
+#pragma config(Motor,  port4,           backLeft,      tmotorVex393_MC29, openLoop)
+#pragma config(Motor,  port5,           frontLeft,     tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port7,           g2,            tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port8,           g3,            tmotorVex393_MC29, openLoop, reversed)
 #pragma config(Motor,  port9,           g4,            tmotorVex393_MC29, openLoop)
@@ -10,7 +9,7 @@
 
 #pragma platform(VEX)
 #define C1LX vexRT[Ch4]
-#define C1LY vexRT[Ch3]fv
+#define C1LY vexRT[Ch3]
 #define C1RX vexRT[Ch1]
 //Competition Control and Duration Settings
 #pragma competitionControl(Competition)
