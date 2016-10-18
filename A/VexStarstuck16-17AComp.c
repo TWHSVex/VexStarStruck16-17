@@ -55,13 +55,7 @@ task autonomous()
 
 	AutonomousCodePlaceholderForTesting();  // Remove this function call once you have "real" code.
 }
-void launch()
-{
-	//motor[g1]=128;
-	//motor[g2]=128;
-//	motor[g3]=128;
-//	motor[g4]=128;
-}
+
 
 void rotateR(){
 	motor[frontRight]= 128;
@@ -93,10 +87,7 @@ task usercontrol()
 				if(vexRT[Btn6D]==1){
 					rotateL();
 				}
-				if(vexRT[Btn5U]==1)
-					{
-						launch();
-					}
+
  // Remove this function call once you have "real" code.
 	}
 }

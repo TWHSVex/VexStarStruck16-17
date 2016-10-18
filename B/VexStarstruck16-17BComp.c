@@ -2,8 +2,8 @@
 #pragma config(Motor,  port2,           backRight,     tmotorVex393_MC29, openLoop, reversed, driveRight)
 #pragma config(Motor,  port3,           frontLeft,     tmotorVex393_MC29, openLoop, driveLeft)
 #pragma config(Motor,  port4,           threeRight,    tmotorVex393_MC29, openLoop, reversed)
-#pragma config(Motor,  port5,           oneLeft,       tmotorVex393_MC29, openLoop)
-#pragma config(Motor,  port6,           twoLeft,       tmotorVex393_MC29, openLoop, reversed)
+#pragma config(Motor,  port5,           oneLeft,       tmotorVex393_MC29, openLoop, reversed)
+#pragma config(Motor,  port6,           twoLeft,       tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port7,           threeLeft,     tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port8,           oneRight,      tmotorVex393_MC29, openLoop, reversed)
 #pragma config(Motor,  port9,           twoRight,      tmotorVex393_MC29, openLoop)
@@ -76,12 +76,12 @@ void liftUp()
 
 void liftDown()
 {
-	motor[oneLeft]=-127;
-	motor[twoLeft]=-127;
-	motor[threeLeft]=-127;
-	motor[oneRight]=-127;
-	motor[twoRight]=-127;
-	motor[threeRight]=-127;
+	motor[oneLeft]=-50;
+	motor[twoLeft]=-50;
+	motor[threeLeft]=-50;
+	motor[oneRight]=-50;
+	motor[twoRight]=-50;
+	motor[threeRight]=-50;
 }
 void stopLift()
 {
