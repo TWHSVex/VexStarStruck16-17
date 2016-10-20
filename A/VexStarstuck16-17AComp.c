@@ -1,3 +1,7 @@
+#pragma config(Sensor, dgtl1,  frontRight,     sensorQuadEncoder)
+#pragma config(Sensor, dgtl3,  frontLeft,      sensorQuadEncoder)
+#pragma config(Sensor, dgtl5,  backRight,      sensorQuadEncoder)
+#pragma config(Sensor, dgtl7,  backLeft,       sensorQuadEncoder)
 #pragma config(Motor,  port2,           backRight,     tmotorVex393_MC29, openLoop, reversed)
 #pragma config(Motor,  port3,           frontRight,    tmotorVex393_MC29, openLoop, reversed)
 #pragma config(Motor,  port4,           backLeft,      tmotorVex393_MC29, openLoop)
@@ -75,7 +79,10 @@ task usercontrol()
 
 	while (true)
 	{
+
 		//Forwards and Backwords
+
+
 				motor[frontRight]=-vexRT[Ch1]+vexRT[Ch4]+vexRT[Ch3];
 				motor[frontLeft]=vexRT[Ch1]+vexRT[Ch4]+vexRT[Ch3];
 				motor[backLeft]=-vexRT[Ch1]-vexRT[Ch4]+vexRT[Ch3];
@@ -86,6 +93,9 @@ task usercontrol()
 				if(vexRT[Btn6D]==1){
 					rotateL();
 				}
+
+
+
 
  // Remove this function call once you have "real" code.
 	}
