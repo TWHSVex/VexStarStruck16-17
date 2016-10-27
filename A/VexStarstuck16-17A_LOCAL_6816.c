@@ -208,7 +208,6 @@ task usercontrol()
 
 			//Forwards and Backwords
 
-
 			  motor[frontRight]=-vexRT[Ch4]+vexRT[Ch1]+vexRT[Ch3];
 				motor[frontLeft]=vexRT[Ch4]+vexRT[Ch1]+vexRT[Ch3];
 				motor[backLeft]=-vexRT[Ch4]-vexRT[Ch1]+vexRT[Ch3];
