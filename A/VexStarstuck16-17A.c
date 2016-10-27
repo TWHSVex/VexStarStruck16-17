@@ -207,6 +207,7 @@ task usercontrol()
 			}
 
 			//Forwards and Backwords
+
 			  motor[frontRight]=-vexRT[Ch4]+vexRT[Ch1]+vexRT[Ch3];
 				motor[frontLeft]=vexRT[Ch4]+vexRT[Ch1]+vexRT[Ch3];
 				motor[backLeft]=-vexRT[Ch4]-vexRT[Ch1]+vexRT[Ch3];
@@ -282,6 +283,12 @@ task usercontrol()
 
 
 			}
+
+				motor[frontRight]=-vexRT[Ch4]+vexRT[Ch1]+vexRT[Ch3];
+				motor[frontLeft]=vexRT[Ch4]+vexRT[Ch1]+vexRT[Ch3];
+				motor[backLeft]=-vexRT[Ch4]-vexRT[Ch1]+vexRT[Ch3];
+				motor[backRight]=vexRT[Ch4]+vexRT[Ch1]+vexRT[Ch3];
+
 				if(vexRT[Btn5D]==1)
 				{
 					motor[cTopRight]=128;
