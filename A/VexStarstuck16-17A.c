@@ -61,138 +61,7 @@ task autonomous()
 	AutonomousCodePlaceholderForTesting();  // Remove this function call once you have "real" code.
 }
 
-/*void fo()
-{
 
-
-	float speedfl = SensorValue[frontLeft]/time1[T1];
-	float speedfr = SensorValue[frontRight]/time1[T1];
-	float speedbl = SensorValue[backLeft]/time1[T1];
-	float speedbr = SensorValue[backRight]/time1[T1];
-
-
-}*/
-
-//marwan i commented the code so others now whats going on
-//sincerely - concernecd coder
-
-/*float smallest() //Find Smallest Motor Speed
-{
-	SensorValue[frontLeft] = 0;
-	SensorValue[frontRight] = 0;
-	SensorValue[backLeft] = 0;
-	SensorValue[backRight] = 0;
-	float time = 6;
-	wait1Msec(time);
-	float speedfl = SensorValue[frontLeft]/time;  //Rotational Speed of each motor
-	float speedfr = SensorValue[frontRight]/time;
-	float speedbl = SensorValue[backLeft]/time;
-	float speedbr = SensorValue[backRight]/time;
-	float test[4] = {speedfl, speedfr, speedbl, speedbr};
-	int smallest = speedfl;
-	for(int i = 1; i < 4; i++){ //Compare each motors Speed and set smallest equal to float smallest
-		if(smallest > test[i]){
-			smallest = test[i];
-		}
-	}
-	return smallest;
-}
-
-void shaftSpeedFL() // Sets speed of front left motor equal to smallest
-{
-	SensorValue[frontLeft] = 0;
-	float time = 6;
-	wait1Msec(time);
-	float speedfl = SensorValue[frontLeft]/time;
-	float small = smallest();
-	while (speedfl<small)
-	{
-		 motor[frontLeft]= motor[frontLeft]-1;
-	}
-}
-
-void shaftSpeedFR() // Sets speed of front right motor equal to smallest
-{
-	SensorValue[frontRight] = 0;
-	float time = 6;
-	wait1Msec(time);
-	float speedfl = SensorValue[frontRight]/time;
-	float small = smallest();
-	while (speedfl<small)
-	{
-		 motor[frontRight]= motor[frontRight]-1;
-	}
-}
-
-void shaftSpeedBR() // Sets speed of back right motor equal to smallest
-{
-	SensorValue[backRight] = 0;
-	float time = 6;
-	wait1Msec(time);
-	float speedfl = SensorValue[backRight]/time;
-	float small = smallest();
-	while (speedfl<small)
-	{
-		 motor[backRight]= motor[backRight]-1;
-	}
-}
-
-void shaftSpeedBL() // Sets speed of back left motor equal to smallest
-{
-	SensorValue[backLeft] = 0;
-	float time = 6;
-	wait1Msec(time);
-	float speedfl = SensorValue[backLeft]/time;
-	float small = smallest();
-	while (speedfl<small)
-	{
-		 motor[backLeft]= motor[backLeft]-1;
-	}
-}*/
-
-
-/*int getShaftSpeeds() //Find Smallest Motor Speed
-{
-	SensorValue[frontLeft] = 0;
-	SensorValue[frontRight] = 0;
-	SensorValue[backLeft] = 0;
-	SensorValue[backRight] = 0;
-	float time = 6;
-	wait1Msec(time);
-	float speedfl = SensorValue[frontLeft]/time;  //Rotational Speed of each motor
-	float speedfr = SensorValue[frontRight]/time;
-	float speedbl = SensorValue[backLeft]/time;
-	float speedbr = SensorValue[backRight]/time;
-	float test[4] = {speedfl, speedfr, speedbl, speedbr};
-	return test;
-}*/
-
-/*void shaftSpeedFL() // Sets speed of front left motor equal to smallest
-{
-	SensorValue[frontLeft] = 0;
-	int time = 6;
-	wait1Msec(time);
-	float speedfl = SensorValue[frontLeft]/time;
-	float small = smallest();
-	while (speedfl<small)
-	{
-		 motor[frontLeft]= motor[frontLeft]-1;
-	}
-}*/
-/*
-void rotateR(){          //rotate right method
-	motor[frontRight]= 128;
-	motor[frontLeft]=-128;
-	motor[backRight]=128;
-	motor[backLeft]=-128;
-}
-
-void rotateL(){        //rotate left method
-	motor[frontRight]= -128;
-	motor[frontLeft]=128;
-	motor[backRight]=-128;
-	motor[backLeft]=128;
-}*/
 
 task usercontrol()
 {
@@ -213,11 +82,7 @@ task usercontrol()
 				motor[frontLeft]=vexRT[Ch4]+vexRT[Ch1]+vexRT[Ch3];
 				motor[backLeft]=-vexRT[Ch4]-vexRT[Ch1]+vexRT[Ch3];
 				motor[backRight]=vexRT[Ch4]+vexRT[Ch1]+vexRT[Ch3];
-			/*
-				motor[frontRight]=-vexRT[Ch4]+vexRT[Ch1]+vexRT[Ch3];
-				motor[frontLeft]=vexRT[Ch4]+vexRT[Ch1]+vexRT[Ch3];
-				motor[backLeft]=-vexRT[Ch4]-vexRT[Ch1]+vexRT[Ch3];
-				motor[backRight]=vexRT[Ch4]+vexRT[Ch1]+vexRT[Ch3];*/
+
 
 				clearTimer(T1);
 
@@ -243,21 +108,7 @@ task usercontrol()
 			smallest = shaftSpeeds[i];
 		}
 	}
-	/*
-	float ratios[4]= { 0,0,0,0};
-	float motorSpeeds[4]= {motor[frontLeft], motor[frontRight], motor[backLeft],motor[backRight]};
-	for(int i = 0; i < 4; i++){
-		if(shaftSpeeds[i] != 0)
-			{
-				ratios[i] = motorSpeeds[i] / shaftSpeeds[i];
-			}
 
-	}
-	motor[frontLeft] = smallest * ratios[0];
-	motor[frontRight] = smallest * ratios[1];
-	motor[backLeft] = smallest *  ratios[2];
-	motor[backRight] = smallest *  ratios[3];
-				*/
 
 
 		if(speedfl>smallest)
@@ -285,10 +136,7 @@ task usercontrol()
 
 			}
 
-				motor[frontRight]=-vexRT[Ch4]+vexRT[Ch1]+vexRT[Ch3];
-				motor[frontLeft]=vexRT[Ch4]+vexRT[Ch1]+vexRT[Ch3];
-				motor[backLeft]=-vexRT[Ch4]-vexRT[Ch1]+vexRT[Ch3];
-				motor[backRight]=vexRT[Ch4]+vexRT[Ch1]+vexRT[Ch3];
+
 
 				if(vexRT[Btn5D]==1)
 				{
@@ -298,11 +146,6 @@ task usercontrol()
 					motor[cBottom]=128;
 				}
 
-						//shaftSpeedBL();
-						//shaftSpeedBR();
-						//shaftSpeedFL();
-						//shaftSpeedFR();
 
- // Remove this function call once you have "real" code.
 	}
 }

@@ -60,19 +60,6 @@ task autonomous()
 }
 
 
-void rotateR(){
-	motor[frontRight]= 128;
-	motor[frontLeft]=-128;
-	motor[backRight]=128;
-	motor[backLeft]=-128;
-}
-
-void rotateL(){
-	motor[frontRight]= -128;
-	motor[frontLeft]=128;
-	motor[backRight]=-128;
-	motor[backLeft]=128;
-}
 
 task usercontrol()
 {
@@ -87,12 +74,6 @@ task usercontrol()
 				motor[frontLeft]=vexRT[Ch4]+vexRT[Ch1]+vexRT[Ch3];
 				motor[backLeft]=-vexRT[Ch4]-vexRT[Ch1]+vexRT[Ch3];
 				motor[backRight]=vexRT[Ch4]+vexRT[Ch1]+vexRT[Ch3];
-				if(vexRT[Btn5D]==1){
-					rotateR();
-				}
-				if(vexRT[Btn6D]==1){
-					rotateL();
-				}
 
 
 
