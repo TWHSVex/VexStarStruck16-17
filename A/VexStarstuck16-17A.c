@@ -59,8 +59,10 @@ void pre_auton()
 //
 /////////////////////////////////////////////////////////////////////////////////////////
 
+
 task autonomous()
 {
+
 
 
 	SensorValue[frontLeft] = 0;
@@ -104,21 +106,22 @@ task usercontrol()
 
 		clearTimer(T1);
 
-		SensorValue[frontLeft] = 0;
-		SensorValue[frontRight] = 0;
-		SensorValue[backLeft] = 0;
-		SensorValue[backRight] = 0;
-		float time = 6;
-		wait1Msec(time);
-		float speedfl = SensorValue[frontLeft];  //Rotational Speed of each motor
-		float speedfr = SensorValue[frontRight];
-		float speedbl = SensorValue[backLeft];
-		float speedbr = SensorValue[backRight];
-		writeDebugStreamLine("speed", speedfl);
-		writeDebugStreamLine("speed", speedfr);
-		writeDebugStreamLine("speed", speedbl);
-		writeDebugStreamLine("speed", speedbr);
+		SensorValue(frontLeft) = 0;
+		SensorValue(frontRight) = 0;
+		SensorValue(backLeft) = 0;
+		SensorValue(backRight) = 0;
+
+		wait1Msec(450);
+
+
+
+		float speedfl = SensorValue(frontLeft)/time10[T1];  //Rotational Speed of each motor
+		float speedfr = SensorValue(frontRight)/time10[T1];
+		float speedbl = SensorValue(backLeft)/time10[T1];
+		float speedbr = SensorValue(backRight)/time10[T1];
+
 		float smallest = speedfl;
+
 		float shaftSpeeds[4] = {speedfl, speedfr, speedbl, speedbr};
 		for(int i = 1; i < 4; i++){ //Compare each motors Speed and set smallest equal to float smallest
 			if(smallest > shaftSpeeds[i]){
