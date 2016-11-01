@@ -14,6 +14,7 @@ task main()
 {
 	while(true)
 	{
+<<<<<<< HEAD
 		tankControl(Ch2, Ch3);
 		if(vexRT(Btn5U)==1)
 		{
@@ -46,6 +47,24 @@ task main()
 	  {
 	  	motor[leftClaw]=128;
 	  	motor[rightClaw]=128;
+=======
+		tankControl(Ch3,Ch2);
+		if(vexRT(Btn5U)==1){
+			motor[motorLeft] = 128;
+			motor[motorRight] = 128;
+		}
+		else{
+			motor[motorLeft] = 0;
+			motor[motorRight] = 0;
+		}
+		if(vexRT(Btn6U)==1){
+			motor[motorLeft] = -128;
+			motor[motorRight] = -128;
+		}
+		else{
+			motor[motorLeft] = 0;
+			motor[motorRight] = 0;
+>>>>>>> c48d88625ec4ce5f4efbe91b5713e86790c4bf12
 		}
 	}
 }
