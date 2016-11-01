@@ -38,65 +38,61 @@ float circum= PI*diameter;
 //
 /////////////////////////////////////////////////////////////////////////////////////////
 
-
+void resetSensors(){
+	SensorValue(frontLeft) = 0;
+	SensorValue(frontRight) = 0;
+	SensorValue(backLeft) = 0;
+	SensorValue(backRight) = 0;
+}
+void setSpeed(float speed){
+	motor[frontLeft] = speed;
+	motor[frontRight] = speed;
+	motor[backLeft] = speed;
+	motor[backRight] = speed;
+}
+bool turn(int ticks){
+	resetSensors();
+	setSpeed(127);
+	waitUntil((SensorValue(frontLeft) >= ticks) && (SensorValue(frontRight) >= ticks) && (SensorValue(backRight) >= ticks) && (SensorValue(backLeft) >= ticks))
+	return true;
+}
 void catapult()
 {
 
-
-	motor[cTopRight]=127;
-	motor[cTopLeft]=127;
-	motor[cMiddle]=127;
-	motor[cBottom]=127;
+	setSpeed(127);
 	waitUntil(SensorValue(aLimit)==1);
 	while(vexRT[Btn5U] == 0){
 		while(SensorValue(aLimit) == 0){
-			motor[cTopRight]=30;
-			motor[cTopLeft]=30;
-			motor[cMiddle]=30;
-			motor[cBottom]=30;
+			setSpeed(30);
 		}
 	}
 	//waitUntil(vexRT[Btn5U]==1);
 
-	motor[cTopRight]=127;
-	motor[cTopLeft]=127;
-	motor[cMiddle]=127;
-	motor[cBottom]=127;
+	setSpeed(-128);
 	waitUntil(SensorValue(aLimit)==0);
 
-	motor[cTopRight]=0;
-	motor[cTopLeft]=0;
-	motor[cMiddle]=0;
-	motor[cBottom]=0;
+	setSpeed(0);
 
 
 
 }
-void autofire()
-{
-		while(vexRT[Btn5U] == 0){
+void turnAndFire(int ticks){
+	setSpeed(127)
+	while(turn(ticks)){
 		while(SensorValue(aLimit) == 0){
-			motor[cTopRight]=30;
-			motor[cTopLeft]=30;
-			motor[cMiddle]=30;
-			motor[cBottom]=30;
+				setSpeed(30);
 		}
 	}
-	//waitUntil(vexRT[Btn5U]==1);
-
-	motor[cTopRight]=127;
-	motor[cTopLeft]=127;
-	motor[cMiddle]=127;
-	motor[cBottom]=127;
-	waitUntil(SensorValue(aLimit)==0);
-
-	motor[cTopRight]=0;
-	motor[cTopLeft]=0;
-	motor[cMiddle]=0;
-	motor[cBottom]=0;
-
+	waitUntil(SensorValue(aLimit)==1);
 }
-
+void fire()
+{
+	setSpeed(127)
+	waitUntil(SensorValue(aLimit) == 1);
+	setSpeed(-128);
+	waitUntil(SensorValue(aLimit)==0);
+	setSpeed(0);
+}
 void pre_auton()
 {
 	// Set bStopTasksBetweenModes to false if you want to keep user created tasks running between
@@ -116,30 +112,20 @@ void pre_auton()
 //
 /////////////////////////////////////////////////////////////////////////////////////////
 
-//task autonomous()
-//{
-//	while(SensorValue(fLimit)==0)
-//	{
-//		motor[frontLeft]=127;
-//		motor[frontRight]=127;
-//		motor[backLeft]=127;
-//		motor[backRight]=127;
-//	}
-//	motor[frontLeft]=0;
-//	motor[frontRight]=0;
-//	motor[backLeft]=0;
-//	motor[backRight]=0;
+task autonomous()
+{
+	while(SensorValue(fLimit)==0)
+	{
+		setSpeed(127);
+	}
+	setSpeed(0);
 
-//	autofire();
+	turnAndFire(180);
 
-
-//}
+}
 
 void moveInch(float distance){
-	SensorValue[frontLeft] = 0;
-	SensorValue[frontRight] = 0;
-	SensorValue[backLeft] = 0;
-	SensorValue[backRight] = 0;
+	resetSensors();
 	float targetticks = distance / circum * 360 / sqrt(2);
 	while(abs(SensorValue(frontLeft)) < targetticks)
 	{
@@ -154,11 +140,11 @@ void moveInch(float distance){
 	motor[backLeft]=0;
 	motor[backRight]=0;
 }
-task autonomous()
-{
-	moveInch(12);
+//task autonomous()
+//{
+//	moveInch(12);
 
-}
+//}
 
 
 
@@ -176,10 +162,7 @@ task usercontrol()
 
 		clearTimer(T1);
 
-		SensorValue(frontLeft) = 0;
-		SensorValue(frontRight) = 0;
-		SensorValue(backLeft) = 0;
-		SensorValue(backRight) = 0;
+		resetSensors();
 
 		wait1Msec(450);
 
