@@ -2,6 +2,8 @@
 #pragma config(Sensor, dgtl3,  frontLeft,      sensorQuadEncoder)
 #pragma config(Sensor, dgtl5,  backRight,      sensorQuadEncoder)
 #pragma config(Sensor, dgtl7,  backLeft,       sensorQuadEncoder)
+#pragma config(Sensor, dgtl9,  fLimit,         sensorTouch)
+#pragma config(Sensor, dgtl10, aLimit,         sensorTouch)
 #pragma config(Motor,  port2,           frontRight,    tmotorVex393_MC29, openLoop, reversed, driveRight)
 #pragma config(Motor,  port3,           frontLeft,     tmotorVex393_MC29, openLoop, driveLeft)
 #pragma config(Motor,  port4,           backRight,     tmotorVex393_MC29, openLoop, reversed, driveRight)
@@ -17,7 +19,7 @@
 #define C1LY vexRT[Ch3]
 #define C1RX vexRT[Ch1]
 float target = 12; //Inches
-float diameter = 3.5;
+float diameter = 4;
 
 float circum= PI*diameter;
 float rot = target/circum;
@@ -29,7 +31,7 @@ float targetticks = rot*360/sqrt(2);
 #pragma autonomousDuration(20)
 #pragma userControlDuration(120)
 
-#include "Vex_Competition_Includes.c"   //Main competition background code...do not modify!
+#include "Vex_Competition_Includes.c/"   //Main competition background code...do not modify!
 
 /////////////////////////////////////////////////////////////////////////////////////////
 //
@@ -39,6 +41,41 @@ float targetticks = rot*360/sqrt(2);
 // following function.
 //
 /////////////////////////////////////////////////////////////////////////////////////////
+
+
+void catapult()
+{
+
+
+	motor[cTopRight]=127;
+	motor[cTopLeft]=127;
+	motor[cMiddle]=127;
+	motor[cBottom]=127;
+	waitUntil(SensorValue(aLimit)==1);
+	while(vexRT[Btn5U] == 0){
+		while(SensorValue(aLimit) == 0){
+			motor[cTopRight]=30;
+			motor[cTopLeft]=30;
+			motor[cMiddle]=30;
+			motor[cBottom]=30;
+		}
+	}
+	//waitUntil(vexRT[Btn5U]==1);
+
+	motor[cTopRight]=127;
+	motor[cTopLeft]=127;
+	motor[cMiddle]=127;
+	motor[cBottom]=127;
+	waitUntil(SensorValue(aLimit)==0);
+
+	motor[cTopRight]=0;
+	motor[cTopLeft]=0;
+	motor[cMiddle]=0;
+	motor[cBottom]=0;
+
+
+
+}
 
 void pre_auton()
 {
@@ -58,31 +95,44 @@ void pre_auton()
 // You must modify the code to add your own robot specific commands here.
 //
 /////////////////////////////////////////////////////////////////////////////////////////
-
-
-task autonomous()
+/*
+task auto2()
 {
-
-
-
+if(SensorValue(fLimit)==1)
+{
+forward();
+}
+else
+{
+motor[frontLeft]=0;
+motor[frontRight]=0;
+motor[backLeft]=0;
+motor[backRight]=0;
+}
+}
+*/
+void moveInch(float distance){
 	SensorValue[frontLeft] = 0;
 	SensorValue[frontRight] = 0;
 	SensorValue[backLeft] = 0;
 	SensorValue[backRight] = 0;
- //targetticks = (12/(3.5*PI))*360;
-
+	targetticks = (distance/(4*PI))*360;
 	while(abs(SensorValue(frontLeft)) < targetticks)
 	{
 		motor[frontLeft]=127;
 		motor[frontRight]=127;
 		motor[backLeft]=127;
 		motor[backRight]=127;
-		wait1Msec(3000);
+
 	}
-		motor[frontLeft]=0;
-		motor[frontRight]=0;
-		motor[backLeft]=0;
-		motor[backRight]=0;
+	motor[frontLeft]=0;
+	motor[frontRight]=0;
+	motor[backLeft]=0;
+	motor[backRight]=0;
+}
+task autonomous()
+{
+	moveInch(12);
 }
 
 
@@ -92,12 +142,7 @@ task usercontrol()
 
 	while (true)
 	{
-
-
-
 		//Forwards and Backwards
-
-
 		motor[frontRight]=-vexRT[Ch4]+vexRT[Ch1]+vexRT[Ch3];
 		motor[frontLeft]=vexRT[Ch4]+vexRT[Ch1]+vexRT[Ch3];
 		motor[backLeft]=-vexRT[Ch4]-vexRT[Ch1]+vexRT[Ch3];
@@ -146,17 +191,17 @@ task usercontrol()
 		}
 		if(vexRT[Btn5D]==1)
 		{
-			motor[cTopRight]=128;
-			motor[cTopLeft]=128;
-			motor[cMiddle]=128;
-			motor[cBottom]=128;
+			motor[cTopRight]=127;
+			motor[cTopLeft]=127;
+			motor[cMiddle]=127;
+			motor[cBottom]=127;
 		}
 		else if(vexRT[Btn5U]==1)
 		{
-			motor[cTopRight]=-128;
-			motor[cTopLeft]=-128;
-			motor[cMiddle]=-128;
-			motor[cBottom]=-128;
+			motor[cTopRight]=-127;
+			motor[cTopLeft]=-127;
+			motor[cMiddle]=-127;
+			motor[cBottom]=-127;
 		}
 		else
 		{
@@ -165,7 +210,6 @@ task usercontrol()
 			motor[cMiddle]=0;
 			motor[cBottom]=0;
 		}
-
 
 	}
 }

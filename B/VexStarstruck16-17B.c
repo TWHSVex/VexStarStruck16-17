@@ -12,34 +12,24 @@
 
 task main()
 {
-
-
-
-while(true)
+	while(true)
 	{
 		tankControl(Ch3,Ch2);
 		if(vexRT(Btn5U)==1){
-	  	motor[motorLeft] = 128;
-	   	motor[motorRight] = 128;
-    }
-    else{
-  		motor[motorLeft] = 0;
-  		motor[motorRight] = 0;
-    }
-    if(vexRT(Btn6U)==1){
-    	motor[motorLeft] = -128;
-    	motor[motorRight] = -128;
-    }
-    else{
-    	motor[motorLeft] = 0;
-    	motor[motorRight] = 0;
-   	}
-
-
-
-
+			motor[motorLeft] = 128;
+			motor[motorRight] = 128;
+		}
+		else{
+			motor[motorLeft] = 0;
+			motor[motorRight] = 0;
+		}
+		if(vexRT(Btn6U)==1){
+			motor[motorLeft] = -128;
+			motor[motorRight] = -128;
+		}
+		else{
+			motor[motorLeft] = 0;
+			motor[motorRight] = 0;
+		}
 	}
-
-
-
 }

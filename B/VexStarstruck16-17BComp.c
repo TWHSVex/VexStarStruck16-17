@@ -31,18 +31,18 @@
 
 void pre_auton()
 {
-  // Set bStopTasksBetweenModes to false if you want to keep user created tasks
-  // running between Autonomous and Driver controlled modes. You will need to
-  // manage all user created tasks if set to false.
-  bStopTasksBetweenModes = true;
+	// Set bStopTasksBetweenModes to false if you want to keep user created tasks
+	// running between Autonomous and Driver controlled modes. You will need to
+	// manage all user created tasks if set to false.
+	bStopTasksBetweenModes = true;
 
 	// Set bDisplayCompetitionStatusOnLcd to false if you don't want the LCD
 	// used by the competition include file, for example, you might want
 	// to display your team name on the LCD in this function.
 	// bDisplayCompetitionStatusOnLcd = false;
 
-  // All activities that occur before the competition starts
-  // Example: clearing encoders, setting servo positions, ...
+	// All activities that occur before the competition starts
+	// Example: clearing encoders, setting servo positions, ...
 }
 
 /*---------------------------------------------------------------------------*/
@@ -57,12 +57,12 @@ void pre_auton()
 
 task autonomous()
 {
-  // ..........................................................................
-  // Insert user code here.
-  // ..........................................................................
+	// ..........................................................................
+	// Insert user code here.
+	// ..........................................................................
 
-  // Remove this function call once you have "real" code.
-  AutonomousCodePlaceholderForTesting();
+	// Remove this function call once you have "real" code.
+	AutonomousCodePlaceholderForTesting();
 }
 void liftUp()
 {
@@ -95,30 +95,29 @@ void stopLift()
 
 task usercontrol()
 {
-  // User control code here, inside the loop
+	// User control code here, inside the loop
 
-  while (true)
-  {
-  	tankControl(Ch3,Ch2);
-  	if(vexRT[Btn5U]==1)
-  		{
-  			liftDown();
-  		}
-  	else
-  		{
-  			stopLift();
-  		}
+	while (true)
+	{
+		tankControl(Ch3,Ch2);
+		if(vexRT[Btn5U]==1)
+		{
+			liftDown();
+		}
+		else
+		{
+			stopLift();
+		}
 
-  if(vexRT[Btn6U]==1)
-  	{
+		if(vexRT[Btn6U]==1)
+		{
 
-  	liftUp();
-  	}
-  else
-  {
-  	stopLift();
-  }
+			liftUp();
+		}
+		else
+		{
+			stopLift();
+		}
 
-
-  }
+	}
 }
