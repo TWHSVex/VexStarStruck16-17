@@ -72,6 +72,30 @@ void catapult()
 
 
 }
+void autofire()
+{
+		while(vexRT[Btn5U] == 0){
+		while(SensorValue(aLimit) == 0){
+			motor[cTopRight]=30;
+			motor[cTopLeft]=30;
+			motor[cMiddle]=30;
+			motor[cBottom]=30;
+		}
+	}
+	//waitUntil(vexRT[Btn5U]==1);
+
+	motor[cTopRight]=127;
+	motor[cTopLeft]=127;
+	motor[cMiddle]=127;
+	motor[cBottom]=127;
+	waitUntil(SensorValue(aLimit)==0);
+
+	motor[cTopRight]=0;
+	motor[cTopLeft]=0;
+	motor[cMiddle]=0;
+	motor[cBottom]=0;
+
+}
 
 void pre_auton()
 {
@@ -91,22 +115,26 @@ void pre_auton()
 // You must modify the code to add your own robot specific commands here.
 //
 /////////////////////////////////////////////////////////////////////////////////////////
-/*
-task auto2()
-{
-if(SensorValue(fLimit)==1)
-{
-forward();
-}
-else
-{
-motor[frontLeft]=0;
-motor[frontRight]=0;
-motor[backLeft]=0;
-motor[backRight]=0;
-}
-}
-*/
+
+//task autonomous()
+//{
+//	while(SensorValue(fLimit)==0)
+//	{
+//		motor[frontLeft]=127;
+//		motor[frontRight]=127;
+//		motor[backLeft]=127;
+//		motor[backRight]=127;
+//	}
+//	motor[frontLeft]=0;
+//	motor[frontRight]=0;
+//	motor[backLeft]=0;
+//	motor[backRight]=0;
+
+//	autofire();
+
+
+//}
+
 void moveInch(float distance){
 	SensorValue[frontLeft] = 0;
 	SensorValue[frontRight] = 0;
@@ -129,6 +157,7 @@ void moveInch(float distance){
 task autonomous()
 {
 	moveInch(12);
+
 }
 
 
