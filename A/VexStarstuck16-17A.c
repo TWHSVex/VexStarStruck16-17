@@ -18,12 +18,8 @@
 #define C1LX vexRT[Ch4]
 #define C1LY vexRT[Ch3]
 #define C1RX vexRT[Ch1]
-float target = 12; //Inches
 float diameter = 4;
-
 float circum= PI*diameter;
-float rot = target/circum;
-float targetticks = rot*360/sqrt(2);
 
 
 //Competition Control and Duration Settings
@@ -31,7 +27,7 @@ float targetticks = rot*360/sqrt(2);
 #pragma autonomousDuration(20)
 #pragma userControlDuration(120)
 
-#include "Vex_Competition_Includes.c/"   //Main competition background code...do not modify!
+#include "Vex_Competition_Includes.c"   //Main competition background code...do not modify!
 
 /////////////////////////////////////////////////////////////////////////////////////////
 //
@@ -116,7 +112,7 @@ void moveInch(float distance){
 	SensorValue[frontRight] = 0;
 	SensorValue[backLeft] = 0;
 	SensorValue[backRight] = 0;
-	targetticks = (distance/(4*PI))*360;
+	float targetticks = distance / circum * 360 / sqrt(2);
 	while(abs(SensorValue(frontLeft)) < targetticks)
 	{
 		motor[frontLeft]=127;
@@ -157,6 +153,8 @@ task usercontrol()
 		SensorValue(backRight) = 0;
 
 		wait1Msec(450);
+
+
 
 
 
