@@ -86,36 +86,34 @@ setSpeed(0);
 //	}
 //	waitUntil(SensorValue(aLimit)==1);
 //}
+void fire()
+{
+	setMultipleMotors(cTopLeft,cTopRight,cMiddle,127);
+	waitUntil(SensorValue(aLimit)==1);
+	setMultipleMotors(cTopLeft,cTopRight,cMiddle,-127);
+	waitUntil(SensorValue(aLimit)==0);
+	setMultipleMotors(cTopLeft,cTopRight,cMiddle,0);
+}
 
 void turnAndFire(int ticks){
-
+	resetSensor();
 	while (SensorValue(frontLeft) < ticks)
 	{
 		setSpeed(127);
 	}
 	setSpeed(0);
-	setMultipleMotors(cTopLeft,cTopRight,cMiddle,127);
-	waitUntil(SensorValue(aLimit)==1);
-	setMultipleMotors(cTopLeft,cTopRight,cMiddle,0);
+	fire();
 }
 
-/*
-void fire()
-{
-setSpeed(127);
-waitUntil(SensorValue(aLimit) == 1);
-setSpeed(-128);
-waitUntil(SensorValue(aLimit)==0);
-setSpeed(0);
-}
-*/
+
+
 void pre_auton()
 {
 	// Set bStopTasksBetweenModes to false if you want to keep user created tasks running between
 	// Autonomous and Tele-Op modes. You will need to manage all user created tasks if set to false.
 	bStopTasksBetweenModes = true;
 
-	// All activities that occur before the competition starts
+	// All acti vities that occur before the competition starts
 	// Example: clearing encoders, setting servo positions, ...
 }
 
@@ -128,55 +126,57 @@ void pre_auton()
 //
 /////////////////////////////////////////////////////////////////////////////////////////
 
-task autonomous()
-{
-
-
+void equilizeMotors(){
 	resetSensors();
 	clearTimer(T1);
-
-	setSpeed(127);
 	wait1Msec(50);
+	float speedfl = SensorValue(frontLeft)/time10[T1];  //Rotational Speed of each motor
+	float speedfr = SensorValue(frontRight)/time10[T1];
+	float speedbl = SensorValue(backLeft)/time10[T1];
+	float speedbr = SensorValue(backRight)/time10[T1];
+
+	float smallest = speedfl;
+
+	float shaftSpeeds[4] = {speedfl, speedfr, speedbl, speedbr};
+	for(int i = 1; i < 4; i++){ //Compare each motors Speed and set smallest equal to float smallest
+		if(smallest > shaftSpeeds[i]){
+			smallest = shaftSpeeds[i];
+		}
+	}
+	if(speedfl>smallest)
+	{
+		motor[frontLeft]= motor[frontLeft]-1;
+	}
+	if(speedfr>smallest)
+	{
+		motor[frontRight]= motor[frontRight]-1;
+	}
+	if(speedbl>smallest)
+	{
+		motor[backLeft]= motor[backLeft]-1;
+	}
+	if(speedbr>smallest)
+	{
+		motor[backRight]= motor[backRight]-1;
+	}
+}
+
+task autonomous()
+{
+	setSpeed(127);
 
 	while(SensorValue(fLimit)==0)
 	{
-		float speedfl = SensorValue(frontLeft)/time10[T1];  //Rotational Speed of each motor
-		float speedfr = SensorValue(frontRight)/time10[T1];
-		float speedbl = SensorValue(backLeft)/time10[T1];
-		float speedbr = SensorValue(backRight)/time10[T1];
-
-		float smallest = speedfl;
-
-		float shaftSpeeds[4] = {speedfl, speedfr, speedbl, speedbr};
-		for(int i = 1; i < 4; i++){ //Compare each motors Speed and set smallest equal to float smallest
-			if(smallest > shaftSpeeds[i]){
-				smallest = shaftSpeeds[i];
-			}
-		}
-		if(speedfl>smallest)
-		{
-			motor[frontLeft]= motor[frontLeft]-1;
-		}
-		if(speedfr>smallest)
-		{
-			motor[frontRight]= motor[frontRight]-1;
-		}
-		if(speedbl>smallest)
-		{
-			motor[backLeft]= motor[backLeft]-1;
-		}
-		if(speedbr>smallest)
-		{
-			motor[backRight]= motor[backRight]-1;
-		}
+		equilizeMotors();
 	}
 	setSpeed(0);
 	turnAndFire(135); //fix this number to be 135 degrees
 
 }
-/*
+
 void moveInch(float distance){
-resetSensors();
+
+resetSensors();whoismarwan
 float targetticks = distance / circum * 360 / sqrt(2);
 while(abs(SensorValue(frontLeft)) < targetticks)
 {
@@ -191,7 +191,7 @@ motor[frontRight]=0;
 motor[backLeft]=0;
 motor[backRight]=0;
 }
-*/
+
 //task autonomous()
 //{
 //	moveInch(12);
