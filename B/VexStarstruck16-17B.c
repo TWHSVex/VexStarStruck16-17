@@ -76,7 +76,7 @@ task autonomous()
 	//time msec, right, left
 //	clawBoolean(750,true);
 	//time msec, open
-	driveDecimal(15000,.3,.7);											//Noah if you can't fix the motors/treads adjust the two numbers on the right that are not commented out
+	driveDecimal(15000,.3,.7);
 	//time, right, left
 //	clawBoolean(750,false);
 	//time msec, close

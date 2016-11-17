@@ -96,7 +96,6 @@ void stopLift()
 task usercontrol()
 {
 	// User control code here, inside the loop
-
 	while (true)
 	{
 		tankControl(Ch3,Ch2);
@@ -118,6 +117,5 @@ task usercontrol()
 		{
 			stopLift();
 		}
-
 	}
 }
