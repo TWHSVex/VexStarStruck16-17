@@ -169,7 +169,12 @@ clawBoolean(10000,false);
 
 task usercontrol()
 {
+<<<<<<< HEAD
 	while(true)
+=======
+	// User control code here, inside the loop
+	while (true)
+>>>>>>> 7f779f63ae5c0c227ce5e8b72992b686cfd3ba0e
 	{
 
 
@@ -269,6 +274,7 @@ task usercontrol()
 		{
 			motor[strafing]=0;
 		}
+<<<<<<< HEAD
 
 		///////Expiremental Code/////
 
@@ -326,6 +332,8 @@ task usercontrol()
 		//}
 		//off();
 
+=======
+>>>>>>> 7f779f63ae5c0c227ce5e8b72992b686cfd3ba0e
 	}
 	// User control code here, inside the loop
 
